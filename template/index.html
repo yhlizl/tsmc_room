@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>TSMC 匿名聊天室</title>
+	<link rel="stylesheet" href="/resource/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/rolling/css/rolling.css">
+	<link rel="stylesheet" href="/static/stylesheets/style.css">
+	<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+
+	<script type="text/javascript" src="/resource/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/rolling/js/rolling.js"></script>
+</head>
+<body class="rooms">
+	<div class="scrollbar-macosx">
+		<div class="header">
+			<div class="toptext">
+				<a href="#">
+					<span class="glyphicon glyphicon-home"></span>
+					<b>選擇一個聊天室</b>
+				</a>
+			</div>
+			<ul class="topnavlist">
+				<li class="userinfo">
+					<a><span class="glyphicon glyphicon-user"></span><b> {{ .user_info.username }} </b></a>
+				</li>
+
+			</ul>
+			<div class="clapboard hidden"></div>
+		</div>
+		<div class="main container">
+			<div class="room_list">
+
+				{{range .rooms}}
+				
+				<div class="col-xs-6 col-sm-6 col-md-4" >
+				<span class = 'bg-primary'>{{.roomname}}</span>	
+					<a href="/room/{{ .id }}" class="thumbnail">
+						
+						<img src="/static/images/rooms/{{ .id }}.jpg" alt="聊天室{{ .id }}" style="object-fit: contain;aspect-ratio: 5 /4 ;" width="324" height="200">
+						<span><span class='glyphicon glyphicon-user'></span>目前 人數 ： {{ .num }}</span>
+					</a>
+				</div>
+
+				{{ end }}
+			</div>
+		</div>
+	</div>
+</body>
+</html>

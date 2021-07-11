@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TSMC 匿名聊天室</title>
+    <link rel="stylesheet" href="/resource/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="/resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/rolling/js/rolling.js"></script>
+</head>
+<body class="login">
+<div class="scrollbar-macosx">
+    <div class="main container ">
+        <div class="jumbotron">
+            <h3>全球最大 TSMC 匿名聊天室上線拉，請先登錄 （絕對安全）</h3>
+            <p class="user_portrait">
+                <img portrait_id="1" src="/static/images/user/1.png" alt="portrait_1">
+            </p>
+            <p class="select_portrait">
+                <img portrait_id="1" src="/static/images/user/1.png" alt="portrait_1" class="t">
+                <img portrait_id="2" src="/static/images/user/2.png" alt="portrait_1">
+                <img portrait_id="3" src="/static/images/user/3.png" alt="portrait_1">
+                <img portrait_id="4" src="/static/images/user/4.png" alt="portrait_1">
+                <img portrait_id="5" src="/static/images/user/5.png" alt="portrait_1">
+                <img portrait_id="6" src="/static/images/user/6.png" alt="portrait_1">
+                <img portrait_id="7" src="/static/images/user/7.png" alt="portrait_1">
+                <img portrait_id="8" src="/static/images/user/8.png" alt="portrait_1">
+                <img portrait_id="9" src="/static/images/user/9.png" alt="portrait_1">
+                <img portrait_id="10" src="/static/images/user/10.png" alt="portrait_1">
+                <img portrait_id="11" src="/static/images/user/11.png" alt="portrait_1">
+                <img portrait_id="12" src="/static/images/user/12.png" alt="portrait_1">
+     
+                <img portrait_id="14" src="/static/images/user/14.png" alt="portrait_1">
+                <img portrait_id="15" src="/static/images/user/15.png" alt="portrait_1">
+                <img portrait_id="16" src="/static/images/user/16.png" alt="portrait_1">
+                <img portrait_id="17" src="/static/images/user/17.png" alt="portrait_1">
+                <img portrait_id="18" src="/static/images/user/18.png" alt="portrait_1">
+                <img portrait_id="19" src="/static/images/user/19.png" alt="portrait_1">
+                <img portrait_id="20" src="/static/images/user/20.png" alt="portrait_1">
+                <img portrait_id="21" src="/static/images/user/21.png" alt="portrait_1">
+                <img portrait_id="22" src="/static/images/user/22.png" alt="portrait_1">
+                <img portrait_id="23" src="/static/images/user/23.png" alt="portrait_1">
+                <img portrait_id="24" src="/static/images/user/24.png" alt="portrait_1">
+
+                
+            </p>
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="輸入你的暱稱，不少於兩位（不重複）" required>
+
+                <input type="password" class="form-control" placeholder="密碼，不少於6位（請記得密碼）" required>
+
+                <button id="login" class="btn btn-default" type="submit">
+                    <span class="">登錄/註冊</span>
+                </button>
+            </div>
+        </div>
+        <div class="footer">
+            <span>{{ .OnlineUserCount }}</span> 人在線偷懶熱聊中！
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    $(document).ready(function(){
+
+        $('.select_portrait img').hover(function() {
+            var portrait_id = $(this).attr('portrait_id');
+            $('.user_portrait img').attr('src', '/static/images/user/' + portrait_id + '.png');
+            $('.user_portrait img').attr('width', '128px');
+             $('.user_portrait img').attr('height', '128px');
+        }, function() {
+            var t_id = $('.user_portrait img').attr('portrait_id');
+            $('.user_portrait img').attr('src', '/static/images/user/' + t_id + '.png');
+        });
+        $('.select_portrait img').click(function(event) {
+            var portrait_id = $(this).attr('portrait_id');
+            $('.user_portrait img').attr('portrait_id', portrait_id);
+            $('.select_portrait img').removeClass('t');
+            $(this).addClass('t');
+        });
+
+        $('#login').click(function (event) {
+
+            let userName = $('.login input[type=text]').val(); // 用戶暱稱
+            let pwd = $('.login input[type=password]').val(); // 用戶暱稱
+
+            let avatar_id = $('.user_portrait img').attr('portrait_id'); // 用戶頭像id
+
+            $.post("/login", {
+                username: userName,
+                password: pwd,
+                avatar_id: avatar_id
+            }, function (res) {
+                if (res.code != 0) {
+                    alert(res.msg);
+                    return false;
+                }
+                window.location.assign("/home");
+            });
+        });
+    })
+
+    // 回車鍵登錄
+    $(document).keyup(function(event){
+        if(event.keyCode === 13){
+            $("#login").trigger("click");
+        }
+    });
+
+</script>
+</html>
