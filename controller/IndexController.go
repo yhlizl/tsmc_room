@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"go-gofram-chat/app/service/helper"
 	"go-gofram-chat/app/service/message_service"
 	"go-gofram-chat/app/service/user_service"
@@ -85,7 +84,7 @@ func Room(r *ghttp.Request) {
 	case "6":
 		roomname = "台積 Arizona"
 	}
-	fmt.Println(roomId)
+	//fmt.Println(roomId)
 	r.Response.WriteTpl("room.html", g.Map{
 		"user_info":      userInfo,
 		"msg_list":       msgList,
