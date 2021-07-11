@@ -1,0 +1,2 @@
+code --install-extension yzhang.markdown-all-in-one-1.4.0.vsix
+https://marketplace.visualstudio.com/vscode
