@@ -19,7 +19,7 @@
 
 # Database.
 [database]
-    link  = "mysql:root:hans5943@tcp(127.0.0.1:3306)/go-goframe-chat"
+    link  = "mysql:root:usbw@tcp(127.0.0.1:3307)/chatroom"
     debug = true
     # Database logger.
     [database.logger]
