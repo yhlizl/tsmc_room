@@ -289,7 +289,7 @@ func formatServeMsgStr(status int, conn *websocket.Conn) ([]byte, msg) {
 		toUid, _ := strconv.Atoi(toUidStr)
 
 		// 保存消息
-		stringUid := strconv.FormatFloat(data["uid"].(float64), 'f', -1, 64)
+		stringUid := strconv.FormatFloat(data["uid"].(float64), 'f', -1, 64) 
 		intUid, _ := strconv.Atoi(stringUid)
 
 		if _, ok := clientMsg.Data.(map[string]interface{})["image_url"]; ok {

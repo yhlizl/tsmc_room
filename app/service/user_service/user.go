@@ -5,6 +5,7 @@ import (
 	"go-gofram-chat/app/service/helper"
 	"go-gofram-chat/app/service/session"
 	"go-gofram-chat/app/service/validator"
+	"log"
 	"strconv"
 
 	"github.com/gogf/gf/frame/g"
@@ -18,7 +19,7 @@ func Login(r *ghttp.Request) {
 	avatarId := r.GetString("avatar_id")
 
 	var u validator.User
-
+	u_temp := validator.User{}
 	u.Username = username
 	u.Password = pwd
 	u.AvatarId = avatarId
@@ -42,6 +43,13 @@ func Login(r *ghttp.Request) {
 		}
 
 	} else {
+		//check valid
+		if err := g.Validator().Data(u).CheckStruct(u_temp); err != nil {
+			r.Response.WriteJson(g.Map{"code": 5001, "msg": err.FirstString()})
+			log.Println(err.Items())
+			return
+		}
+
 		// if no in db, create new user
 		userInfo = models.AddUser(map[string]interface{}{
 			"username":  username,
