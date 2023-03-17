@@ -1,4 +1,4 @@
-FROM loads/alpine:3.8
+FROM 1.19.7-alpine3.17
 
 LABEL maintainer="hans.kusos@hotmail.com"
 
