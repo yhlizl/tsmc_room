@@ -23,4 +23,4 @@ ADD template $WORKDIR/template
 #                                   START
 ###############################################################################
 WORKDIR $WORKDIR
-CMD ["go", "run", "./main.go"]
+CMD ["go", "run", "main.go"]
