@@ -25,3 +25,4 @@ ADD template $WORKDIR/template
 WORKDIR $WORKDIR
 RUN go mod tidy
 CMD ["go", "run", "./main.go"]
+EXPOSE 8322
