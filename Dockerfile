@@ -23,4 +23,5 @@ ADD template $WORKDIR/template
 #                                   START
 ###############################################################################
 WORKDIR $WORKDIR
+RUN go mod tidy
 CMD ["go", "run", "./main.go"]
