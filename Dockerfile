@@ -10,8 +10,8 @@ LABEL maintainer="hans.kusos@hotmail.com"
 ENV WORKDIR /usr/src/app
 
 # 添加應用可執行文件，並設置執行權限
-COPY .   $WORKDIR/main
-RUN chmod +x $WORKDIR/main
+COPY .   $WORKDIR
+RUN chmod +x $WORKDIR
 
 # 添加I18N多語言文件、靜態文件、配置文件、模板文件
 ADD i18n     $WORKDIR/i18n
@@ -23,4 +23,4 @@ ADD template $WORKDIR/template
 #                                   START
 ###############################################################################
 WORKDIR $WORKDIR
-CMD ["go", "run", "main.go"]
+CMD ["go", "run", "./main.go"]
